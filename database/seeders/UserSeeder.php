@@ -16,24 +16,21 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Javier Teheran Magallanez',
             'email' => 'Programador14@tecnologicocomfenalco.edu.co',
-            
-            'password' => bcrypt('123456789'), // Utiliza la función bcrypt para encriptar la contraseña
+             'password' => bcrypt('123456789'),  
        
         ])->assignRole('admin');
 
         User::create([
             'name' => 'CARLOS ESCOBAR',
             'email' => 'Programador4@tecnologicocomfenalco.edu.co',
-          
-            'password' => bcrypt('12345678'), // Utiliza la función bcrypt para encriptar la contraseña
+            'password' => bcrypt('12345678'), 
         ])->assignRole('admin');
        
 
         User::create([
             'name' => 'JCamargo',
             'email' => 'Programador10@tecnologicocomfenalco.edu.co',
-           
-            'password' => bcrypt('123456789'), // Utiliza la función bcrypt para encriptar la contraseña
+            'password' => bcrypt('123456789'),  
             
         ])->assignRole('admin');;
     
