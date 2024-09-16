@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class HistorialCompra extends Model
 {
     use HasFactory;
+    protected $fillable = ['user_id', 'total', 'fecha'];
+
+    public function productos()
+    {
+        return $this->hasMany(HistorialProducto::class);
+    }
 }

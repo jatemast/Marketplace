@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\CarritoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,3 +41,10 @@ Route::get('/productos/{producto}', [ProductoController::class, 'show'])->name('
 Route::get('/productos/{producto}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
 Route::put('/productos/{producto}', [ProductoController::class, 'update'])->name('productos.update');
 Route::delete('/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+
+
+// Rutas para el carrito
+Route::post('/carrito/agregar/{producto_id}', [CarritoController::class, 'agregarAlCarrito'])->name('carrito.agregar');
+Route::get('/carrito', [CarritoController::class, 'mostrarCarrito'])->name('carrito.mostrar');
+Route::post('/carrito/pagar', [CarritoController::class, 'pagar'])->name('carrito.pagar');
+Route::post('/carrito/agregar/{producto_id}', [CarritoController::class, 'agregarAlCarrito'])->name('carrito.agregar');

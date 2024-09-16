@@ -61,6 +61,11 @@
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</button>
                                 </form>
+                                <!-- Botón agregar al carrito -->
+                                <form action="{{ route('carrito.agregar', $producto->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded">Agregar al carrito</button>
+                                </form>
                             </div>
                         </div>
                     </div>
