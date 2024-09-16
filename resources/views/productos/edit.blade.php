@@ -9,7 +9,7 @@
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg">
         <h1 class="text-2xl font-semibold mb-6 text-gray-800">Editar Producto</h1>
-        <form action="{{ route('productos.update', $producto->id) }}" method="POST" class="space-y-4">
+        <form action="{{ route('productos.update', $producto->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
             @method('PUT')
             <div>
@@ -42,6 +42,18 @@
                 </select>
             </div>
             
+            <div>
+                <label for="imagen" class="block text-sm font-medium text-gray-700 mb-1">Imagen</label>
+                @if ($producto->imagen)
+                    <div class="mb-2">
+                        <img src="{{ asset('storage/' . $producto->imagen) }}" alt="Imagen del producto" class="w-32 h-32 object-cover">
+                    </div>
+                @endif
+                <input type="file" name="imagen" id="imagen" 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                <p class="text-sm text-gray-500 mt-1">Opcional. Formatos aceptados: jpg, jpeg, png, gif. Tamaño máximo: 2MB.</p>
+            </div>
+
             <div class="flex items-center justify-between pt-4">
                 <a href="{{ route('productos.index') }}" class="text-sm text-indigo-600 hover:text-indigo-900">
                     Volver a la lista
