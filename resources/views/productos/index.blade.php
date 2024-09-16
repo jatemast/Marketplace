@@ -5,8 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Productos</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="bg-gray-100 min-h-screen p-8">
+    <!-- Icono del carrito -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="carrito-btn" class="text-2xl text-gray-800 hover:text-gray-600">
+            <i class="fas fa-shopping-cart"></i>
+        </button>
+    </div>
+
+    <!-- Modal del carrito -->
+    <div id="carrito-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-11/12 md:w-1/3">
+            <h2 class="text-2xl font-semibold mb-4">Tu Carrito</h2>
+            <!-- Aquí se mostrarán los productos del carrito -->
+            <div id="carrito-contenido">
+                <!-- Los productos se cargarán aquí mediante JavaScript -->
+            </div>
+            <button id="carrito-close" class="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Cerrar</button>
+        </div>
+    </div>
+
     <div class="max-w-7xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
         <div class="px-6 py-4 bg-gray-800 text-white">
             <h1 class="text-2xl font-semibold">Lista de Productos</h1>
@@ -68,10 +88,35 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div>   
                 @endforeach
             </div>
         </div>
     </div>
+
+    <!-- Scripts para manejar el modal -->
+    <script>
+        document.getElementById('carrito-btn').addEventListener('click', function() {
+            document.getElementById('carrito-modal').classList.remove('hidden');
+            fetch('/carrito') // Ajusta la URL según cómo obtengas los productos del carrito
+                .then(response => response.json())
+                .then(data => {
+                    const carritoContenido = document.getElementById('carrito-contenido');
+                    carritoContenido.innerHTML = '';
+                    data.forEach(producto => {
+                        carritoContenido.innerHTML += `
+                            <div class="border-b border-gray-200 py-2">
+                                <p class="text-lg font-semibold">${producto.nombre}</p>
+                                <p class="text-gray-700">${producto.precio}</p>
+                            </div>
+                        `;
+                    });
+                });
+        });
+
+        document.getElementById('carrito-close').addEventListener('click', function() {
+            document.getElementById('carrito-modal').classList.add('hidden');
+        });
+    </script>
 </body>
 </html>

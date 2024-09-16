@@ -28,15 +28,28 @@ class CarritoController extends Controller
         return redirect()->back()->with('success', 'Producto agregado al carrito');
     }
 
-
-    // Mostrar el carrito
     public function mostrarCarrito()
     {
-        $carrito = Carrito::where('user_id', Auth::id())->first();
-        $productos = $carrito ? $carrito->productos : [];
-
-        return view('carrito.mostrar', compact('productos'));
+        // Obtén el carrito del usuario
+        $carrito = auth()->user()->carrito()->first();
+    
+        // Verifica si el carrito existe antes de intentar acceder a productos
+        if (!$carrito) {
+            return view('carrito.mostrar', ['productos' => collect(), 'total' => 0]);
+        }
+    
+        // Obtén los productos del carrito
+        $productos = $carrito->productos;
+    
+        // Calcula el total de los precios
+        $total = $productos->sum(function ($producto) {
+            return $producto->precio * $producto->pivot->cantidad;
+        });
+    
+        return view('carrito.mostrar', compact('productos', 'total'));
     }
+    
+    
 
     // Pagar y generar el PDF
     public function pagar()
@@ -87,5 +100,8 @@ class CarritoController extends Controller
 
         return redirect()->back()->with('success', 'Producto agregado al carrito');
     }
+
+
+    
 
 }

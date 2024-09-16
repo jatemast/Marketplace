@@ -46,5 +46,7 @@ Route::delete('/productos/{producto}', [ProductoController::class, 'destroy'])->
 // Rutas para el carrito
 Route::post('/carrito/agregar/{producto_id}', [CarritoController::class, 'agregarAlCarrito'])->name('carrito.agregar');
 Route::get('/carrito', [CarritoController::class, 'mostrarCarrito'])->name('carrito.mostrar');
+ 
+
 Route::post('/carrito/pagar', [CarritoController::class, 'pagar'])->name('carrito.pagar');
 Route::post('/carrito/agregar/{producto_id}', [CarritoController::class, 'agregarAlCarrito'])->name('carrito.agregar');
