@@ -101,7 +101,25 @@ class CarritoController extends Controller
         return redirect()->back()->with('success', 'Producto agregado al carrito');
     }
 
+    // Mostrar historial de compras del usuario
+ 
+// Añadir esta función al CarritoController
+public function historialCompras()
+{
+    $user = Auth::user();
 
+    // Obtener el historial de compras del usuario
+    $historialCompras = HistorialCompra::where('user_id', $user->id)->get();
+
+    // Obtener los detalles de cada compra
+    foreach ($historialCompras as $historialCompra) {
+        $historialCompra->productos = HistorialProducto::where('historial_compra_id', $historialCompra->id)->get();
+    }
+
+    return view('carrito.historial', compact('historialCompras'));
+}
+
+ 
     
 
 }

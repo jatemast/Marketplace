@@ -48,3 +48,6 @@ Route::post('/carrito/agregar/{producto_id}', [CarritoController::class, 'agrega
 Route::get('/carrito', [CarritoController::class, 'mostrarCarrito'])->name('carrito.mostrar');
 Route::post('/carrito/pagar', [CarritoController::class, 'pagar'])->name('carrito.pagar');
 Route::post('/carrito/agregar/{producto_id}', [CarritoController::class, 'agregarAlCarrito'])->name('carrito.agregar');
+Route::get('/historial-compras', [CarritoController::class, 'historialCompras'])->name('historial.compras');
+
+ 

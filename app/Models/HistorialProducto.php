@@ -19,4 +19,10 @@ class HistorialProducto extends Model
     {
         return $this->belongsTo(HistorialCompra::class);
     }
+
+    public function producto()
+{
+    return $this->belongsTo(Producto::class);
+}
+
 }
