@@ -10,9 +10,9 @@
 <body class="bg-gray-100 min-h-screen p-8">
     <!-- Icono del carrito -->
     <div class="fixed top-4 right-4 z-50">
-        <button id="carrito-btn" class="text-2xl text-gray-800 hover:text-gray-600">
+        <a href="{{ route('carrito.mostrar') }}" class="text-2xl text-gray-800 hover:text-gray-600">
             <i class="fas fa-shopping-cart"></i>
-        </button>
+        </a>
     </div>
 
     <!-- Modal del carrito -->
