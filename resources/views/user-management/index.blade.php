@@ -18,7 +18,7 @@
             <h1 class="text-4xl font-bold mb-6 text-gray-800">Gestión de Usuarios</h1>
 
             <!-- Botón de refrescar página -->
-            <button onclick="location.reload();" class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 transition mb-6">
+            <button onclick="window.location.href='{{ route('user-management.index') }}';" class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 transition mb-6">
                 Refrescar Página
             </button>
             
