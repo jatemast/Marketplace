@@ -12,6 +12,28 @@
             <h1 class="text-2xl font-semibold">Lista de Productos</h1>
         </div>
         <div class="p-6">
+            <!-- Formulario de búsqueda por categoría y nombre -->
+            <form method="GET" action="{{ route('productos.index') }}" class="mb-6">
+                <div class="flex items-center space-x-4">
+                    <select name="categoria_id" class="px-4 py-2 border border-gray-300 rounded-md">
+                        <option value="">Selecciona una categoría</option>
+                        @foreach ($categorias as $categoria)
+                            <option value="{{ $categoria->id }}" {{ $categoria_id == $categoria->id ? 'selected' : '' }}>
+                                {{ $categoria->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <input type="text" name="search_name" value="{{ $search_name }}" placeholder="Buscar por nombre" class="px-4 py-2 border border-gray-300 rounded-md">
+                    <button type="submit" class="px-4 py-2 bg-indigo-600 text-white font-medium rounded hover:bg-indigo-700 transition duration-300 ease-in-out">
+                        Buscar
+                    </button>
+                    <!-- Botón para refrescar la página -->
+                    <a href="{{ route('productos.index') }}" class="px-4 py-2 bg-gray-600 text-white font-medium rounded hover:bg-gray-700 transition duration-300 ease-in-out">
+                        Refrescar
+                    </a>
+                </div>
+            </form>
+
             <a href="{{ route('productos.create') }}" class="inline-block mb-6 px-4 py-2 bg-indigo-600 text-white font-medium rounded hover:bg-indigo-700 transition duration-300 ease-in-out">
                 Crear Producto
             </a>

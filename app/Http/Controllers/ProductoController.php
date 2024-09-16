@@ -9,11 +9,29 @@ use App\Models\Categoria;
 
 class ProductoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $productos = Producto::with('categoria')->get();
-        return view('productos.index', compact('productos'));
-    }
+        $categorias = Categoria::all();
+        $categoria_id = $request->input('categoria_id');
+        $search_name = $request->input('search_name');
+
+        // Construye la consulta
+        $query = Producto::query()->with('categoria');
+
+        // Aplica filtros si se proporcionan
+        if ($categoria_id) {
+            $query->where('categoria_id', $categoria_id);
+        }
+
+        if ($search_name) {
+            $query->where('nombre', 'like', '%' . $search_name . '%');
+        }
+
+        $productos = $query->get();
+
+        return view('productos.index', compact('productos', 'categorias', 'categoria_id', 'search_name'));
+
+}
 
     public function create()
     {
