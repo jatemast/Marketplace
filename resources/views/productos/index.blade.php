@@ -1,3 +1,4 @@
+<x-app-layout>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,7 +7,7 @@
     <title>Lista de Productos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
+</head><BR><BR></BR></BR>
 <body class="bg-gray-100 min-h-screen p-8">
     <!-- Icono del carrito -->
     <div class="fixed top-4 right-4 z-50">
@@ -120,3 +121,4 @@
     </script>
 </body>
 </html>
+</x-app-layout>

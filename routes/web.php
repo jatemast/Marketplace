@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\Auth\RegisterController;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -50,4 +53,20 @@ Route::post('/carrito/pagar', [CarritoController::class, 'pagar'])->name('carrit
 Route::post('/carrito/agregar/{producto_id}', [CarritoController::class, 'agregarAlCarrito'])->name('carrito.agregar');
 Route::get('/historial-compras', [CarritoController::class, 'historialCompras'])->name('historial.compras');
 
- 
+Route::get('/categorias', function () {
+    return view('welcomecomponentes.categorias');
+});
+
+Route::get('/ofertas', function () {
+    return view('welcomecomponentes.ofertas');
+});
+
+Route::get('/historial', function () {
+    return view('welcomecomponentes.historial');
+});
+
+Route::get('/vender', function () {
+    return view('welcomecomponentes.vender');
+
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+});

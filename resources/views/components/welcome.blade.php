@@ -1,96 +1,85 @@
-<div class="p-6 lg:p-8 bg-white border-b border-gray-200">
-    <x-application-logo class="block h-12 w-auto" />
-
-    <h1 class="mt-8 text-2xl font-medium text-gray-900">
-        Welcome to your Jetstream application!
-    </h1>
-
-    <p class="mt-6 text-gray-500 leading-relaxed">
-        Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
-        to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
-        you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
-        ecosystem to be a breath of fresh air. We hope you love it.
-    </p>
-</div>
-
-<div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
-    <div>
-        <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6 stroke-gray-400">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-            </svg>
-            <h2 class="ms-3 text-xl font-semibold text-gray-900">
-                <a href="https://laravel.com/docs">Documentation</a>
-            </h2>
+<div x-data="{ showModal: false }" class="bg-gray-100 min-h-screen">
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-r from-blue-600 to-indigo-600 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative z-10 pb-16 sm:pb-24 lg:pb-32 xl:pb-48">
+                <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 lg:mt-20 xl:mt-28">
+                    <div class="text-center lg:text-left">
+                        <h1 class="text-5xl tracking-tight font-extrabold text-white sm:text-6xl md:text-7xl animate-fade-in-down">
+                            <span class="block xl:inline">Bienvenido, {{ Auth::user()->name }}</span>
+                            <span class="block text-yellow-300 xl:inline">Tu Marketplace Premium</span>
+                        </h1>
+                        <p class="mt-5 text-lg text-gray-200 sm:mt-6 sm:max-w-xl sm:mx-auto md:text-xl lg:mx-0 animate-fade-in-up">
+                            Explora productos de alta calidad y vende lo que desees. Haz crecer tu negocio con nosotros.
+                        </p>
+                        <div class="mt-8 sm:flex sm:justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 animate-bounce">
+                            <a href="{{ route('productos.index') }}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 text-lg font-medium rounded-lg text-white bg-blue-500 hover:bg-blue-600 transition-all duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                                Explorar Productos
+                            </a>
+                            <a href="{{ route('productos.create') }}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 text-lg font-medium rounded-lg text-white bg-yellow-400 hover:bg-yellow-500 transition-all duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                                Vender Artículo
+                            </a>
+                        </div>
+                    </div>
+                </main>
+            </div>
         </div>
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+            <img class="h-64 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full rounded-tl-lg shadow-lg hover:scale-105 transition-all duration-300" src="{{ asset('images/marketplace-hero.jpg') }}" alt="Marketplace Shopping">
+        </div>
+    </div>
 
-        <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-            Laravel has wonderful documentation covering every aspect of the framework. Whether you're new to the framework or have previous experience, we recommend reading all of the documentation from beginning to end.
-        </p>
+    <!-- Feature Section -->
+    <div class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Características Exclusivas</h2>
+                <p class="mt-2 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+                    Diseñado para el éxito comercial
+                </p>
+                <p class="mt-5 max-w-2xl text-lg text-gray-500 mx-auto">
+                    Aprovecha nuestras herramientas avanzadas para optimizar tus ventas y compras.
+                </p>
+            </div>
 
-        <p class="mt-4 text-sm">
-            <a href="https://laravel.com/docs" class="inline-flex items-center font-semibold text-indigo-700">
-                Explore the documentation
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10">
+                @foreach([
+                    ['icon' => 'M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z', 'title' => 'Compra Segura', 'description' => 'Transacciones seguras con garantía de satisfacción.'],
+                    ['icon' => 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2-3 .895-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', 'title' => 'Venta Ágil', 'description' => 'Sube tus productos con herramientas fáciles y eficaces.'],
+                    ['icon' => 'M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z', 'title' => 'Comunicación Fluida', 'description' => 'Chatea con clientes en tiempo real para mejorar tus ventas.'],
+                    ['icon' => 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01', 'title' => 'Reputación Verificada', 'description' => 'Sistema de reseñas que garantiza la calidad y confianza en la plataforma.'],
+                ] as $feature)
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <div class="h-12 w-12 flex items-center justify-center rounded-full bg-blue-600 text-white animate-spin-slow">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $feature['icon'] }}"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">{{ $feature['title'] }}</h3>
+                            <p class="mt-2 text-base text-gray-500">{{ $feature['description'] }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ms-1 w-5 h-5 fill-indigo-500">
-                    <path fill-rule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clip-rule="evenodd" />
-                </svg>
+    <!-- CTA Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-600">
+        <div class="max-w-2xl mx-auto text-center py-20 px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-extrabold text-white sm:text-5xl">
+                <span class="block">¿Estás listo para avanzar?</span>
+                <span class="block">Comienza a explorar hoy mismo.</span>
+            </h2>
+            <p class="mt-5 text-lg leading-6 text-indigo-200">
+                Encuentra lo que necesitas o vende lo que ya no usas. ¡Empieza ahora!
+            </p>
+            <a href="{{ route('productos.index') }}" class="mt-8 inline-flex items-center justify-center px-5 py-3 text-lg font-medium rounded-lg bg-white text-blue-600 hover:bg-gray-100 transition-all duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                Explorar Productos
             </a>
-        </p>
-    </div>
-
-    <div>
-        <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6 stroke-gray-400">
-                <path stroke-linecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
-            </svg>
-            <h2 class="ms-3 text-xl font-semibold text-gray-900">
-                <a href="https://laracasts.com">Laracasts</a>
-            </h2>
         </div>
-
-        <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-            Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-        </p>
-
-        <p class="mt-4 text-sm">
-            <a href="https://laracasts.com" class="inline-flex items-center font-semibold text-indigo-700">
-                Start watching Laracasts
-
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ms-1 w-5 h-5 fill-indigo-500">
-                    <path fill-rule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clip-rule="evenodd" />
-                </svg>
-            </a>
-        </p>
-    </div>
-
-    <div>
-        <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6 stroke-gray-400">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-            </svg>
-            <h2 class="ms-3 text-xl font-semibold text-gray-900">
-                <a href="https://tailwindcss.com/">Tailwind</a>
-            </h2>
-        </div>
-
-        <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-            Laravel Jetstream is built with Tailwind, an amazing utility first CSS framework that doesn't get in your way. You'll be amazed how easily you can build and maintain fresh, modern designs with this wonderful framework at your fingertips.
-        </p>
-    </div>
-
-    <div>
-        <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6 stroke-gray-400">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-            </svg>
-            <h2 class="ms-3 text-xl font-semibold text-gray-900">
-                Authentication
-            </h2>
-        </div>
-
-        <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-            Authentication and registration views are included with Laravel Jetstream, as well as support for user email verification and resetting forgotten passwords. So, you're free to get started with what matters most: building your application.
-        </p>
     </div>
 </div>

@@ -1,3 +1,5 @@
+<x-app-layout>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
+</head><BR><BR></BR></BR>
 <body class="bg-gray-100 min-h-screen p-8">
     <div class="container mx-auto bg-white p-6 rounded-lg shadow-md">
         <h1 class="text-3xl font-bold mb-4 text-gray-800">Carrito de Compras</h1>
@@ -38,3 +40,4 @@
     </div>
 </body>
 </html>
+</x-app-layout>
