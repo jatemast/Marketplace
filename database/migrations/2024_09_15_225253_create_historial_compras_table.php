@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('productos', function (Blueprint $table) {
+        Schema::create('historial_compras', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->decimal('precio', 8, 2);
-            $table->integer('stock');
-            $table->string('imagen')->nullable(); // Campo para la imagen
-            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->decimal('total', 8, 2);
+            $table->timestamp('fecha')->useCurrent();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('productos');
+        Schema::dropIfExists('historial_compras');
     }
 };
