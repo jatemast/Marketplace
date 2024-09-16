@@ -102,6 +102,9 @@
                             <x-dropdown-link href="{{ route('productos.create') }}">
                                 {{ __('Registrar Articulos') }}
                             </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('historial.compras') }}">
+                                {{ __('Historial de compras') }}
+                            </x-dropdown-link>
 
                             <x-dropdown-link href="{{ route('user-management.index') }}">
                                 {{ __('Administrar Usuarios') }}
