@@ -103,6 +103,10 @@
                                 {{ __('Registrar Articulos') }}
                             </x-dropdown-link>
 
+                            <x-dropdown-link href="{{ route('user-management.index') }}">
+                                {{ __('Administrar Usuarios') }}
+                            </x-dropdown-link>
+
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
                             </x-dropdown-link>

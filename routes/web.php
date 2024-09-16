@@ -18,12 +18,18 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
- // Administrar Usuarios
+ 
+// Ruta para mostrar la lista de usuarios y manejar la búsqueda
 Route::get('/user-management', [UserManagementController::class, 'index'])->name('user-management.index');
+
+// Ruta para actualizar la contraseña de un usuario
 Route::post('/user-management/update/{id}', [UserManagementController::class, 'update'])->name('user-management.update');
 
+// Ruta para actualizar los roles de un usuario
+Route::post('/user-management/update-roles/{id}', [UserManagementController::class, 'updateRoles'])->name('user-management.update-roles');
 
+// Ruta para la búsqueda de usuarios
+Route::get('/user-management/search', [UserManagementController::class, 'search'])->name('user-management.search');
 
 
 // productos 
