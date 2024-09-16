@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\UserManagementController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,6 +17,13 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+ // Administrar Usuarios
+Route::get('/user-management', [UserManagementController::class, 'index'])->name('user-management.index');
+Route::post('/user-management/update/{id}', [UserManagementController::class, 'update'])->name('user-management.update');
+
+
 
 
 // productos 
