@@ -4,39 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Productos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Lista de Productos</h1>
-    <a href="{{ route('productos.create') }}">Crear Producto</a>
-    <table border="1" cellpadding="10">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Categoría</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($productos as $producto)
-                <tr>
-                    <td>{{ $producto->nombre }}</td>
-                    <td>{{ $producto->precio }}</td>
-                    <td>{{ $producto->stock }}</td>
-                    <td>{{ $producto->categoria->nombre }}</td>
-                    <td>
-                        <a href="{{ route('productos.show', $producto->id) }}">Mostrar</a>
-                        <a href="{{ route('productos.edit', $producto->id) }}">Editar</a>
-                        <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+<body class="bg-gray-100 min-h-screen p-8">
+    <div class="max-w-7xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="px-6 py-4 bg-gray-800 text-white">
+            <h1 class="text-2xl font-semibold">Lista de Productos</h1>
+        </div>
+        <div class="p-6">
+            <a href="{{ route('productos.create') }}" class="inline-block mb-6 px-4 py-2 bg-indigo-600 text-white font-medium rounded hover:bg-indigo-700 transition duration-300 ease-in-out">
+                Crear Producto
+            </a>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Precio</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoría</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach ($productos as $producto)
+                            <tr class="hover:bg-gray-50 transition duration-150 ease-in-out">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $producto->nombre }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${{ number_format($producto->precio, 2) }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $producto->stock }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $producto->categoria->nombre }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <a href="{{ route('productos.show', $producto->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Ver</a>
+                                    <a href="{{ route('productos.edit', $producto->id) }}" class="text-gray-600 hover:text-gray-900 mr-3">Editar</a>
+                                    <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" class="inline-block">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
