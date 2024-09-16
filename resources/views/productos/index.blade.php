@@ -14,8 +14,8 @@
         <div class="p-6">
             <!-- Formulario de búsqueda por categoría y nombre -->
             <form method="GET" action="{{ route('productos.index') }}" class="mb-6">
-                <div class="flex items-center space-x-4">
-                    <select name="categoria_id" class="px-4 py-2 border border-gray-300 rounded-md">
+                <div class="flex flex-col md:flex-row md:items-center md:space-x-4">
+                    <select name="categoria_id" class="px-4 py-2 border border-gray-300 rounded-md mb-2 md:mb-0">
                         <option value="">Selecciona una categoría</option>
                         @foreach ($categorias as $categoria)
                             <option value="{{ $categoria->id }}" {{ $categoria_id == $categoria->id ? 'selected' : '' }}>
@@ -23,8 +23,8 @@
                             </option>
                         @endforeach
                     </select>
-                    <input type="text" name="search_name" value="{{ $search_name }}" placeholder="Buscar por nombre" class="px-4 py-2 border border-gray-300 rounded-md">
-                    <button type="submit" class="px-4 py-2 bg-indigo-600 text-white font-medium rounded hover:bg-indigo-700 transition duration-300 ease-in-out">
+                    <input type="text" name="search_name" value="{{ $search_name }}" placeholder="Buscar por nombre" class="px-4 py-2 border border-gray-300 rounded-md mb-2 md:mb-0 flex-1">
+                    <button type="submit" class="px-4 py-2 bg-indigo-600 text-white font-medium rounded hover:bg-indigo-700 transition duration-300 ease-in-out mb-2 md:mb-0">
                         Buscar
                     </button>
                     <!-- Botón para refrescar la página -->
@@ -37,37 +37,34 @@
             <a href="{{ route('productos.create') }}" class="inline-block mb-6 px-4 py-2 bg-indigo-600 text-white font-medium rounded hover:bg-indigo-700 transition duration-300 ease-in-out">
                 Crear Producto
             </a>
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Precio</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoría</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($productos as $producto)
-                            <tr class="hover:bg-gray-50 transition duration-150 ease-in-out">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $producto->nombre }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${{ number_format($producto->precio, 2) }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $producto->stock }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $producto->categoria->nombre }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <a href="{{ route('productos.show', $producto->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Ver</a>
-                                    <a href="{{ route('productos.edit', $producto->id) }}" class="text-gray-600 hover:text-gray-900 mr-3">Editar</a>
-                                    <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" class="inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach ($productos as $producto)
+                    <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                        @if ($producto->imagen)
+                            <img src="{{ Storage::url($producto->imagen) }}" alt="{{ $producto->nombre }}" class="w-full h-48 object-cover">
+                        @else
+                            <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+                                <span class="text-gray-500">Sin imagen</span>
+                            </div>
+                        @endif
+                        <div class="p-4">
+                            <h2 class="text-xl font-semibold text-gray-900">{{ $producto->nombre }}</h2>
+                            <p class="text-gray-700">${{ number_format($producto->precio, 2) }}</p>
+                            <p class="text-gray-500">Stock: {{ $producto->stock }}</p>
+                            <p class="text-gray-500">Categoría: {{ $producto->categoria->nombre }}</p>
+                            <div class="mt-4 flex space-x-2">
+                                <a href="{{ route('productos.show', $producto->id) }}" class="text-indigo-600 hover:text-indigo-900">Ver</a>
+                                <a href="{{ route('productos.edit', $producto->id) }}" class="text-gray-600 hover:text-gray-900">Editar</a>
+                                <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
