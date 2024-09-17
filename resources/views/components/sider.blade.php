@@ -9,7 +9,7 @@
             <div class="flex items-center mb-6 ml-1">
                 <div class="flex flex-col items-center mt-20">
                     <!-- Logo Section -->
-                    
+
 
 
 
@@ -42,6 +42,15 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                         </svg>
                         <span class="ml-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100">Purchase History</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('productos.index') }}"
+                        class="flex items-center p-2 transition-all duration-200 rounded-lg hover:bg-amber-300 group hover:scale-105">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z"/>
+                          </svg>
+                        <span class="ml-3 transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100">Productos</span>
                     </a>
                 </li>
                 <li>
