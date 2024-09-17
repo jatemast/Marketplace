@@ -9,13 +9,6 @@
             <div class="flex items-center mb-6 ml-1">
                 <div class="flex flex-col items-center mt-20">
                     <!-- Logo Section -->
-                    
-
-
-
-
-
-
             <ul id="sidebar-menu" class="flex-grow space-y-4 font-medium">
                 <li>
                     <a href="{{ url('/dashboard') }}"
@@ -57,7 +50,6 @@
         </div>
     </aside>
 </div>
-
 <!--- Toggle Button --->
 <div class="fixed z-[10000] top-4 left-4">
     <button id="toggle-sidebar" class="flex items-center justify-center w-10 h-10 p-2 transition-colors duration-200 rounded-full shadow-lg bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400">
