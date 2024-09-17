@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-            <img class="object-cover w-full h-64 transition-all duration-300 rounded-tl-lg shadow-lg sm:h-72 md:h-96 lg:w-full lg:h-full hover:scale-105" src="{{ asset('images/marketplace-hero.jpg') }}" alt="Marketplace Shopping">
+            <img class="object-cover w-full h-64 transition-all duration-300 rounded-tl-lg shadow-lg sm:h-72 md:h-96 lg:w-full lg:h-full hover:scale-105" src="{{ asset('imagenes/72bd8762b51694e532a0a7dabcacfa42.jpg') }}" alt="Marketplace Shopping">
         </div>
     </div>
 
