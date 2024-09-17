@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="text-gray-300 shadow-lg bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700">
+<nav x-data="{ open: false }" class="text-gray-300 shadow-lg bg-gradient-to-r bg-amber-400 via-gray-800 to-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
@@ -165,5 +165,5 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>
 </nav>

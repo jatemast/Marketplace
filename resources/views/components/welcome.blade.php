@@ -1,5 +1,4 @@
-<x-sider>
-</x-sider>
+
 <div x-data="{ showModal: false }" class="min-h-screen bg-gray-100">
     <!-- Hero Section -->
     <div class="relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-600">
@@ -14,20 +13,20 @@
                         <p class="mt-5 text-lg text-gray-200 sm:mt-6 sm:max-w-xl sm:mx-auto md:text-xl lg:mx-0 animate-fade-in-up">
                             Explora productos de alta calidad y vende lo que desees. Haz crecer tu negocio con nosotros.
                         </p>
-                        <div class="mt-8 space-y-4 sm:flex sm:justify-center lg:justify-start sm:space-y-0 sm:space-x-4 animate-bounce">
+                        {{-- <div class="mt-8 space-y-4 sm:flex sm:justify-center lg:justify-start sm:space-y-0 sm:space-x-4 animate-bounce">
                             <a href="{{ route('productos.index') }}" class="inline-flex items-center justify-center w-full px-8 py-3 text-lg font-medium text-white transition-all duration-300 ease-in-out transform bg-blue-500 rounded-lg shadow-lg sm:w-auto hover:bg-blue-600 hover:scale-105">
                                 Explorar Productos
                             </a>
                             <a href="{{ route('productos.create') }}" class="inline-flex items-center justify-center w-full px-8 py-3 text-lg font-medium text-white transition-all duration-300 ease-in-out transform bg-yellow-400 rounded-lg shadow-lg sm:w-auto hover:bg-yellow-500 hover:scale-105">
                                 Vender Artículo
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </main>
             </div>
         </div>
         <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-            <img class="object-cover w-full h-64 transition-all duration-300 rounded-tl-lg shadow-lg sm:h-72 md:h-96 lg:w-full lg:h-full hover:scale-105" src="{{ asset('images/marketplace-hero.jpg') }}" alt="Marketplace Shopping">
+            <img class="object-cover w-full h-64 transition-all duration-300 rounded-tl-lg shadow-lg sm:h-72 md:h-96 lg:w-full lg:h-full hover:scale-105" src="{{ asset('imagenes/ajajjajajajaja.jpg') }}" alt="Marketplace Shopping">
         </div>
     </div>
 

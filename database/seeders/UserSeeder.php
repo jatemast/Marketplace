@@ -14,22 +14,22 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => 'Javier Teheran Magallanez',
-            'email' => 'Programador14@tecnologicocomfenalco.edu.co',
+            'name' => 'Admin Jv',
+            'email' => 'admin2@gmail.com',
              'password' => bcrypt('123456789'),  
        
         ])->assignRole('admin');
 
         User::create([
-            'name' => 'CARLOS ESCOBAR',
-            'email' => 'Programador4@tecnologicocomfenalco.edu.co',
-            'password' => bcrypt('12345678'), 
+            'name' => 'Admin Cl',
+            'email' => 'admin1@gmail.com',
+            'password' => bcrypt('123456789'), 
         ])->assignRole('admin');
        
 
         User::create([
-            'name' => 'JCamargo',
-            'email' => 'Programador10@tecnologicocomfenalco.edu.co',
+            'name' => 'Admin Jc',
+            'email' => 'admin@gmail.com',
             'password' => bcrypt('123456789'),  
             
         ])->assignRole('admin');;
